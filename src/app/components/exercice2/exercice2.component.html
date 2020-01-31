@@ -1,0 +1,43 @@
+<app-header [title]="'Exercice 2'"></app-header>
+<div class="container">
+    <div class="header">
+        <img class="logo" src="../../../assets/movie.jpg" >
+        <p style="text-align: center;font-size: 30px;">A l'affiche cette semaine</p>
+    </div>
+    <p *ngIf="loading">
+        <img src="/assets/fond.jpg" />
+    </p>
+
+    <div style="width: 80%;position: relative;margin: auto">
+        <owl-carousel [options]="mySlideOptions" [items]="data" [carouselClasses]="['owl-theme', 'sliding']" >
+            <div class="item" *ngFor="let image of data" (click)="getVideo(image.id,image.overview)">
+                <div>
+                    <img style="width: 70% !important;margin: auto" height="300" src="https://image.tmdb.org/t/p/w300/{{image.poster_path}}"/>
+                    <p style="padding-left: 15px;font-weight: bold">{{image.title}}</p>
+                    <p style="padding-left: 15px;color: #777">{{image.overview.substring(0,35)}} ..</p>
+                </div>
+            </div>
+        </owl-carousel>
+    </div>
+
+    <div *ngIf="error" class="oaerror danger">
+        <strong>Error</strong>- error.
+    </div>
+
+    <div class="video-trailer">
+        <p *ngIf="loadingVideo" style="text-align: center;font-size: 18px;padding: 50px">
+            <img src="/assets/fond.jpg" />
+        </p>
+        <p class="novideo" *ngIf="!videoSelected && !loadingVideo && !error">Aucune video choisie</p>
+        <div *ngIf="videoSelected && !loadingVideo && !error">
+            <p class="desc" *ngIf="videoSelected && !loadingVideo">{{description}}</p>
+
+            <iframe style="width: 70%;"  height="400"
+                    [src]="urlSafe">
+            </iframe>
+        </div>
+
+    </div>
+
+    
+</div>
