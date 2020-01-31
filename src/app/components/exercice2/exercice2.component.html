@@ -1,12 +1,10 @@
 <app-header [title]="'Exercice 2'"></app-header>
 <div class="container">
     <div class="header">
-        <img class="logo" src="../../../assets/movie.jpg" >
-        <p style="text-align: center;font-size: 30px;">A l'affiche cette semaine</p>
+        
+        <p >les films de cette semaine</p>
     </div>
-    <p *ngIf="loading">
-        <img src="/assets/fond.jpg" />
-    </p>
+   
 
     <div style="width: 80%;position: relative;margin: auto">
         <owl-carousel [options]="mySlideOptions" [items]="data" [carouselClasses]="['owl-theme', 'sliding']" >
@@ -25,10 +23,8 @@
     </div>
 
     <div class="video-trailer">
-        <p *ngIf="loadingVideo" style="text-align: center;font-size: 18px;padding: 50px">
-            <img src="/assets/fond.jpg" />
-        </p>
-        <p class="novideo" *ngIf="!videoSelected && !loadingVideo && !error">Aucune video choisie</p>
+        
+        <p class="novideo" *ngIf="!videoSelected && !loadingVideo && !error">pas de video choisie</p>
         <div *ngIf="videoSelected && !loadingVideo && !error">
             <p class="desc" *ngIf="videoSelected && !loadingVideo">{{description}}</p>
 
